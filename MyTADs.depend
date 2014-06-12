@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1402591108 source:c:\proyectos programacion\mytads\main.cpp
+	<iostream>
+	"MyTADs.hpp"
+
+1402590211 source:c:\proyectos programacion\mytads\mytads.cpp
+
+1402591138 c:\proyectos programacion\mytads\mytads.hpp
+	<iostream>
+	<cstdlib>
+	<conio.h>
+	<queue>
+
