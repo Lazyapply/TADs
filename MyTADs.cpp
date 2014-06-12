@@ -17,5 +17,39 @@ void sacar (queue<int> &Q, char C, int &N){
     else
         count << "\n\n\t\t - La cola " << C << " esta vacia";
 }
-//void imprimir (queue<int> &Q, char C);
-//void consultar (queue<int> &Q, char C);
+//no la pasamos por referencia para evitar su borrado, ya
+//que para mostrarlas hay que ir quitando elementos
+void imprimir (queue<int> Q, char C){
+    //comprobamos que la cola no esté vacia
+    if(!Q.empty()){
+        int tam = Q.size();
+        int i;
+        for(i=0;i<tam;i++){
+            cout << Q.front() << " ";
+            //De mayor a menor (de ultimo añadido a primero)
+            //añadimos al final el último
+            Q.push(Q.front());
+            //quitamos el ultmio, ya que lo hemos mostrado
+            Q.pop();
+        }
+
+    }
+    else
+        count << "\n\n\t\t - La cola " << C << " esta vacia";
+}
+void consultar (queue<int> &Q, char C){
+    if(!Q.empty()){
+
+    }
+    else
+        count << "\n\n\t\t - La cola " << C << " esta vacia";
+}
+
+
+
+
+
+
+
+
+
