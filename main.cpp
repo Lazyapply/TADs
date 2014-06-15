@@ -7,21 +7,23 @@ using namespace std;
 
     void poner (queue<int> &Q, char C, int &N);
     //saca el ultimo elemento de la cola
-    void sacar (queue<int> &Q, char C, int &N);
+    void sacar (queue<int> &Q, char C);
     //muestra todos los elementos de una cola
     void imprimir (queue<int> &Q, char C);
     //muestra la cabecera de la cola
     void consultar (queue<int> &Q, char C);
 
+    void vaciar(queue<int> &Q, char C);
+
     void menu();
 
-    void opciones(char &opt, queue<int> &cI, queue<int> &cP, int &N);
+    queue<int> crearColaT(queue<int> cI, queue<int> cP);
 
 
 char opcion='Z';
 int main()
 {
-    queue<int> colaI, colaP;
+    queue<int> colaI, colaP, colaT;
     int nProcesos=0;
 
 
@@ -48,12 +50,12 @@ int main()
         break;
 
         case 'C':
-            sacar(colaI, 'I', nProcesos);
+            sacar(colaI, 'I');
 
         break;
 
         case 'D':
-            sacar(colaP, 'P', nProcesos);
+            sacar(colaP, 'P');
 
         break;
 
@@ -77,6 +79,31 @@ int main()
 
         break;
 
+        case 'I':
+            vaciar(colaI, 'I');
+
+        break;
+
+        case 'J':
+            vaciar(colaP, 'P');
+
+        break;
+
+        case 'K':
+            colaT=crearColaT(colaI, colaP);
+
+        break;
+
+        case 'L':
+            consultar(colaT, 'T');
+
+        break;
+
+        case 'M':
+            imprimir(colaT, 'T');
+
+        break;
+
         default:
             opcion='Z';
         break;
@@ -89,11 +116,7 @@ int main()
 
     return 0;
 }
-void opciones(char opt, queue<int> cI, queue<int> cP, int N){
 
-
-
-}
 
 void menu(){
         system("CLS");
@@ -108,6 +131,11 @@ void menu(){
         cout << "\t\tF) Imprimir la cola P\n";
         cout << "\t\tG) Consultar la cabecera de la cola I\n";
         cout << "\t\tH) Consultar la cabecera de la cola P\n";
+        cout << "\t\tI) Vaciar la cola I\n";
+        cout << "\t\tJ) Vaciar la cola P\n";
+        cout << "\t\tK) Crear cola T\n";
+        cout << "\t\tL) Consultar la cabecera de la cola T\n";
+        cout << "\t\tM) Imprimrir la cola T\n";
         cout << "\n\t\tQ) Cerrar programa\n";
 
 }
@@ -127,7 +155,7 @@ void poner (queue<int> &Q, char C, int &N){
     opcion = 'Z';
 
 }
-void sacar (queue<int> &Q, char C, int &N){
+void sacar (queue<int> &Q, char C){
     if(!Q.empty()){
         system("CLS");
         cout << "\n\n\t.............................";
@@ -204,7 +232,65 @@ void consultar (queue<int> &Q, char C){
     }
 }
 
+void vaciar(queue<int> &Q, char C){
+    if(!Q.empty()){
+        while(Q.size()!=0){
+            sacar(Q, C);
+        }
+    }
+    else{
+        system("CLS");
+        cout << "\n\n\t.............................";
+        cout << "\n\n\t\tLa cola " << C << " esta vacia";
+        cout << "\n\t.............................\n\n\n";
+        cout << "\tPulse cualquier tecla para continuar";
+        getch();
+        opcion = 'Z';
+    }
 
+}
+
+queue<int> crearColaT(queue<int> cI, queue<int> cP){
+
+    queue<int> cAux;
+    int aux=0;
+
+    if((!cI.empty()) || (!cP.empty())){
+        //1)poner I en T
+        //2)sacar de I
+        //3)poner P en T
+        //4)sacar de P
+        while((!cI.empty()) || (!cP.empty())){
+            if(aux == 0){
+                if(!cI.empty()){
+                    cI.front()=cI.front()- 1;
+                    poner(cAux, 'T', cI.front());
+                    cI.pop();
+                }
+                aux = 1;
+            }
+            else{
+                if(!cP.empty()){
+                    cP.front()=cP.front()- 1;
+                    poner(cAux, 'T', cP.front());
+                    cP.pop();
+                }
+                aux = 0;
+            }
+        }
+    }
+    else{
+        system("CLS");
+        cout << "\n\n\t.............................";
+        cout << "\n\n\t\tUna(ambas) cola(s) esta(n) vacia(s)";
+        cout << "\n\t.............................\n\n\n";
+        cout << "\tPulse cualquier tecla para continuar";
+        getch();
+        opcion = 'Z';
+    }
+
+    return cAux;
+}
 
 
 
