@@ -95,12 +95,22 @@ int main()
         break;
 
         case 'L':
-            consultar(colaT, 'T');
+            sacar(colaT, 'T');
 
         break;
 
         case 'M':
             imprimir(colaT, 'T');
+
+        break;
+
+        case 'N':
+            consultar(colaT, 'T');
+
+        break;
+
+        case 'O':
+            vaciar(colaT, 'T');
 
         break;
 
@@ -121,7 +131,7 @@ int main()
 void menu(){
         system("CLS");
         cout << "\n\tPractica 1: Colas\n";
-        cout << "\t.....................\n\n\n";
+        cout << "\t...................................\n\n";
         cout << "\tOperaciones disponibles:\n\n";
         cout << "\t\tA) Poner un proceso en la cola I\n";
         cout << "\t\tB) Poner un proceso en la cola P\n";
@@ -134,8 +144,10 @@ void menu(){
         cout << "\t\tI) Vaciar la cola I\n";
         cout << "\t\tJ) Vaciar la cola P\n";
         cout << "\t\tK) Crear cola T\n";
-        cout << "\t\tL) Consultar la cabecera de la cola T\n";
+        cout << "\t\tL) Quitar el primer proceso en la cola T\n";
         cout << "\t\tM) Imprimrir la cola T\n";
+        cout << "\t\tN) Consultar la cabecera de la cola T\n";
+        cout << "\t\tO) Vaciar la cola T\n";
         cout << "\n\t\tQ) Cerrar programa\n";
 
 }
